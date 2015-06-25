@@ -1,7 +1,7 @@
 react-webgl-globe-viz
 =========================
 
-[WebGL Globe](https://github.com/dataarts/webgl-globe) very quick example of visualizing data on a WebGL globe using React.
+[WebGL Globe](https://github.com/dataarts/webgl-globe) very quick example of visualizing data on a WebGL globe using React. This currently displays the countries that ADP operates in around the world. Credit: [https://github.com/zhxnlai/react-webgl-globe-basic-example](https://github.com/zhxnlai/react-webgl-globe-basic-example)
 
 Install
 ---
