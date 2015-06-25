@@ -1,18 +1,11 @@
-react-webgl-globe-basic-example
+react-webgl-globe-viz
 =========================
 
-[WebGL Globe](https://github.com/dataarts/webgl-globe) basic example in react. Here is a [Demo](http://zhxnlai.github.io/react-webgl-globe-basic-example)
+[WebGL Globe](https://github.com/dataarts/webgl-globe) very quick example of visualizing data on a WebGL globe using React.
 
-Installation
+Install
 ---
-react-webgl-globe-basic-example is available as an [npm package](https://www.npmjs.org/package/react-webgl-globe-basic-example).
-~~~sh
-npm install react-webgl-globe-basic-example
-~~~
-
-Building the example site
----
-After install all dependencies:
+After cloning the repo:
 ~~~
 npm install
 npm install -g gulp
