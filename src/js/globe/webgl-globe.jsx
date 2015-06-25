@@ -6,30 +6,34 @@ var React = require('react'),
 Detector = require('./third-party/Detector.js'),
 TWEEN = require('./third-party/Tween.js'),
 DAT = require('./globe.js');
+var THREE = require("../globe/third-party/three.min.js");
+
+var globe;
+
+function colorFn(x) {
+  var c = new THREE.Color();
+  c.setHex(0xDC1E32); // ADP red
+  return c;
+}
 
 var WebGLGlobe = React.createClass({
   render: function() {
+
     return (
       <div>
       <div className="container" ref="container"></div>
 
       <div id="info">
-      <strong><a href="http://www.chromeexperiments.com/globe">WebGL Globe</a></strong> <span className="bull">&bull;</span> Created by the Google Data Arts Team <span className="bull">&bull;</span> Data acquired from <a href="http://sedac.ciesin.columbia.edu/gpw/">SEDAC</a>
+      <strong><a href="http://www.chromeexperiments.com/globe">WebGL Globe</a></strong> <span className="bull">&bull;</span> <span className="google-ack">Created by the Google Data Arts Team</span> <span className="bull">&bull;</span>
       </div>
 
       <div id="currentInfo">
-      <span ref="year1990" className="year">1990</span>
-      <span ref="year1995" className="year">1995</span>
-      <span ref="year2000" className="year">2000</span>
+      <span ref="yearAll" className="year"></span>
       </div>
 
       <div id="title">
-      World Population
+        <h2>Providing services in over <span className="highlight">130 countries</span></h2>
       </div>
-
-      <a id="ce" href="http://www.chromeexperiments.com/globe">
-      <span>This is a Chrome Experiment</span>
-      </a>
 
       </div>
     );
@@ -44,11 +48,11 @@ var WebGLGlobe = React.createClass({
       Detector.addGetWebGLMessage();
     } else {
 
-      var years = ['1990','1995','2000'];
+      var years = ['All'];
       // var container = document.getElementById('container');
 
-      var opts = {imgDir: 'assets/'};
-      var globe = new DAT.Globe(container, opts);
+      var opts = {imgDir: 'assets/', colorFn: colorFn};
+      globe = new DAT.Globe(container, opts);
       var i, tweens = [];
 
       var settime = function(globe, t) {
@@ -76,18 +80,21 @@ var WebGLGlobe = React.createClass({
 
 
       xhr = new XMLHttpRequest();
-      xhr.open('GET', 'assets/population909500.json', true);
+      xhr.open('GET', 'assets/countries.json', true);
       var onreadystatechangecallback = function(e) {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
             var data = JSON.parse(xhr.responseText);
             window.data = data;
             for (i=0;i<data.length;i++) {
-              globe.addData(data[i][1], {format: 'magnitude', name: data[i][0], animated: true});
+              globe.addData(data[i][1], {format: 'magnitude', name: data[i][0], animated: true, autoRotate: true});
             }
             globe.createPoints();
             (settime(globe,0).bind(this))();
             globe.animate();
+
+            rotate(globe, 0.003, 0);
+
             document.body.style.backgroundImage = 'none'; // remove loading
           }
         }
@@ -99,5 +106,12 @@ var WebGLGlobe = React.createClass({
   }
 
 });
+
+function rotate(globe, x, y) {
+  globe.rotate(x, y);
+  setTimeout(function() {
+    rotate(globe, x, y);
+  }, 100);
+}
 
 module.exports = WebGLGlobe;

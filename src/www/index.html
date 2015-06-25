@@ -38,7 +38,7 @@
 
       background-color: rgba(0,0,0,0.2);
 
-      border-top: 1px solid rgba(255,255,255,0.4);
+      /*border-top: 1px solid rgba(255,255,255,0.4);*/
       padding: 10px;
     }
 
@@ -58,12 +58,29 @@
     #title {
       position: absolute;
       top: 20px;
-      width: 270px;
       left: 20px;
       background-color: rgba(0,0,0,0.2);
       border-radius: 3px;
-      font: 20px Georgia;
+      font-size: 20px;
+      font-weight: 300;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
       padding: 10px;
+    }
+
+    #title h2 {
+      margin-top: 8px;
+      margin-bottom: 8px;
+      font: inherit;
+    }
+
+    #title h3 {
+      font: inherit;
+      margin-top: 8px;
+      margin-bottom: 8px;
+    }
+
+    #title span.highlight {
+      color: rgba(220, 30, 50, 1);
     }
 
     .year {
@@ -96,6 +113,9 @@
       bottom: 15px;
       left: 20px;
       background: url(/globe/ce.png);
+    }
+    .google-ack {
+      color: rgba(255, 255, 255, 0.5);
     }
 
 

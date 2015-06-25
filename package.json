@@ -32,7 +32,6 @@
       ]
     ]
   },
-
   "devDependencies": {
     "browser-sync": "^1.7.2",
     "browserify": "^6.3.3",
@@ -50,6 +49,13 @@
     "watchify": "^2.1.1"
   },
   "dependencies": {
-    "react": "^0.12.1"
+    "cheerio": "^0.19.0",
+    "jquery": "^2.1.4",
+    "node-geocoder": "^2.20.2",
+    "q": "^1.4.1",
+    "react": "^0.12.1",
+    "scrape": "^0.2.3",
+    "scrape-html": "^1.0.2",
+    "superagent": "^1.2.0"
   }
 }

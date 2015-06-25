@@ -300,6 +300,21 @@ DAT.Globe = function(container, opts) {
     target.y = target.y < - PI_HALF ? - PI_HALF : target.y;
   }
 
+  function rotate(clientX, clientY) {
+    //mouse.x = - clientX;
+    //mouse.y = clientY;
+    //
+    //var zoomDamp = distance/1000;
+    //
+    //target.x = targetOnDown.x + (mouse.x - mouseOnDown.x) * 0.005 * zoomDamp;
+    //target.y = targetOnDown.y + (mouse.y - mouseOnDown.y) * 0.005 * zoomDamp;
+    target.x = target.x + clientX;
+    target.y = target.y + clientY;
+
+    target.y = target.y > PI_HALF ? PI_HALF : target.y;
+    target.y = target.y < - PI_HALF ? - PI_HALF : target.y;
+  }
+
   function onMouseUp(event) {
     container.removeEventListener('mousemove', onMouseMove, false);
     container.removeEventListener('mouseup', onMouseUp, false);
@@ -403,6 +418,7 @@ DAT.Globe = function(container, opts) {
   this.createPoints = createPoints;
   this.renderer = renderer;
   this.scene = scene;
+  this.rotate = rotate;
 
   return this;
 
